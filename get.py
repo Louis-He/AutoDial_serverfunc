@@ -15,7 +15,7 @@ class index:
         print ID, lon, lat
 
         f = open('/root/web/posrecord.txt', 'a+')
-        f.write('[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + ID + '\t' + lon + '\t' + lat + '\tPOSITION SAVED\n')
+        f.write('[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(lon) + '\t' + str(lat) + '\tPOSITION SAVED\n')
         f.close()
         return "SUCCEED"
 
