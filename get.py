@@ -10,8 +10,8 @@ class index:
         print web.input()
         i = web.input()
         ID = i.ID
-        lon = float(i.lon)
-        lat = float(i.lat)
+        lon = i.lon
+        lat = i.lat
         print ID, lon, lat
 
         f = open('/root/web/posrecord.txt', 'a+')
