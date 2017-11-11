@@ -72,11 +72,14 @@ if __name__ == "__main__":
                     id2 = x
                 else:
                     acc = x
-                    print acc
+                    print 'acc:'+acc
                 count += 1
 
     except:
         print 'ERR: file DO NOT EXIST.'
+
+    print 'acc:'+acc
+
 
     app = web.application(urls, globals())
     app.run()
