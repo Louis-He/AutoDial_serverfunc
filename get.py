@@ -5,7 +5,8 @@ urls = (
     '/index/(.*)', 'index',
     '/search/(.*)', 'search'
 )
-
+global id2
+global acc
 class index:
     def GET(self, name):
         try:
@@ -26,11 +27,10 @@ class index:
 
 
 class search:
-    def GET(self, name):
-        global i
-        global id2
-        global acc
+    global id2
+    global acc
 
+    def GET(self, name):
         print web.input()
         i = web.input()
         ID = i.ID
