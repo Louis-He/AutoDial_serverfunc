@@ -82,7 +82,7 @@ class search:
                     list.append(i)
 
                 for i in range (1,11):
-                    final.append(list[len(list-i)])
+                    final.append(list[len(list)-i])
 
                 for i in range (0,len(final)-1):
                     result += final[i] + '\n'
