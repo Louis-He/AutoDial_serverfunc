@@ -2,7 +2,7 @@ import web
 import time
 
 urls = (
-    '/(.*)', 'index'
+    '/index/(.*)', 'index',
     '/search/(.*)', 'search'
 )
 
