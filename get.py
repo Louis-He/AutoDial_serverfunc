@@ -70,12 +70,11 @@ if __name__ == "__main__":
                     id = x
                 if count == 1:
                     PW = x
+                    print PW
                 count += 1
 
-        print id, PW
     except:
-        print
-        'ERR: file DO NOT EXIST.'
+        print 'ERR: file DO NOT EXIST.'
 
     app = web.application(urls, globals())
     app.run()
