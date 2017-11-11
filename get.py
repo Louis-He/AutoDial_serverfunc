@@ -72,7 +72,7 @@ if __name__ == "__main__":
                     password = x
                 count += 1
 
-        print count, password
+        print id, password
     except:
         print
         'ERR: file DO NOT EXIST.'
