@@ -3,7 +3,8 @@ import time
 
 urls = (
     '/index/(.*)', 'index',
-    '/search/(.*)', 'search'
+    '/sos/search/(.*)', 'search',
+    '/regular/search/(.*)', 'regularsearch'
 )
 
 
@@ -95,6 +96,68 @@ class search:
         else:
             return "Error: Acceess Denied"
 
+class regularsearch:
+
+    def getIDlist(self):
+        global id2
+        global acc
+        try:
+            f = open('/root/web/ID.txt', 'r')
+            lines = f.readlines()
+            f.close()
+
+            count = 0
+            for i in lines:
+                j = i.split('\n')[0]
+                k = j.split(',')
+                for x in k:
+                    print x
+                    if count == 0:
+                        id2 = x
+                    else:
+                        acc = x
+                    count += 1
+        except:
+            print 'ERR: file DO NOT EXIST.'
+
+    def GET(self, name):
+        global id2
+        global acc
+        self.getIDlist();
+
+        print web.input()
+        i = web.input()
+        ID = i.ID
+        pw = i.pw
+        print ID, pw
+        print 'id2' + id2
+        print 'acc' + acc
+        if ID == id2 and pw == acc:
+            lista = []
+            final = []
+            result = 'time(UTC)\tuser\tlon\tlat\n'
+            try:
+                f = open('/root/web/posrecord.txt', 'r')
+                lines = f.readlines()
+                f.close()
+
+                for i in lines:
+                    lista.append(i)
+
+                if len(lista)>10:
+                    for i in range (1,11):
+                        final.append(lista[len(lista)-i])
+                else:
+                    for i in range (1,len(lista)+1):
+                        final.append(lista[len(lista)-i])
+
+                for i in range (0,len(final)):
+                    result += final[i] + '\n'
+            except:
+                print 'ERR: file DO NOT EXIST.'
+            return "REGULAR LISTS\n" + result
+        else:
+            return "Error: Acceess Denied"
 
 
 if __name__ == "__main__":
