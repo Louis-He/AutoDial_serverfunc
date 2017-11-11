@@ -8,35 +8,41 @@ urls = (
 
 class index:
     def GET(self, name):
-        global i
-        print web.input()
-        i = web.input()
-        ID = i.ID
-        lon = i.lon
-        lat = i.lat
-        print ID, lon, lat
-        
-        f = open('/root/web/posrecord.txt', 'a+')
-        f.write('[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(lon) + '\t' + str(lat) + '\tPOSITION SAVED\n')
-        f.close()
-        return "SUCCEED"
+        try:
+            global i
+            print web.input()
+            i = web.input()
+            ID = i.ID
+            lon = i.lon
+            lat = i.lat
+            print ID, lon, lat
+
+            f = open('/root/web/posrecord.txt', 'a+')
+            f.write('[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(lon) + '\t' + str(lat) + '\tPOSITION SAVED\n')
+            f.close()
+            return "SUCCEED"
+        except:
+            return "FAIL"
 
 
 class search:
     def GET(self, name):
-        global i
-        global id
-        global password
-        print web.input()
-        i = web.input()
-        ID = i.ID
-        pw = i.pw
-        print ID, pw
+        try:
+            global i
+            global id
+            global password
+            print web.input()
+            i = web.input()
+            ID = i.ID
+            pw = i.pw
+            print ID, pw
 
-        if ID == id and pw == password:
-            return "IN SEARCH MODE"
-        else:
-            return "Error: Acceess Denied"
+            if ID == id and pw == password:
+                return "IN SEARCH MODE"
+            else:
+                return "Error: Acceess Denied"
+        except:
+            return "FAIL"
 
 
 if __name__ == "__main__":
@@ -64,6 +70,8 @@ if __name__ == "__main__":
                 if count == 1:
                     password = x
                 count += 1
+
+        print count, password
     except:
         print
         'ERR: file DO NOT EXIST.'
