@@ -31,6 +31,9 @@ class search:
     global acc
 
     def GET(self, name):
+        global id2
+        global acc
+        
         print web.input()
         i = web.input()
         ID = i.ID
