@@ -22,7 +22,7 @@ class index:
         return "SUCCEED"
 
 
-class index:
+class search:
 
     def GET(self):
         global i
