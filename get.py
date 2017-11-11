@@ -29,6 +29,26 @@ class index:
                     '[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(
                         lon) + '\t' + str(lat) + '\t' + str(status) + '\n')
                 f.close()
+
+            try:
+                f = open('/root/web/track/' + ID + '.txt', 'a+')
+                f.close()
+            except:
+                f = open('/root/web/track/' + ID + '.txt', 'w+')
+                f.write('User,Longitude,Latitude,time,status')
+                f.close()
+
+            if status == 'regular':
+                status = 1
+            elif status == 'emergency':
+                status = 911
+            else:
+                status = 0
+            f = open('/root/web/track/' + ID + '.txt', 'a+')
+            f.write(
+                ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + ',' + status)
+            f.close()
+
             return "SUCCEED"
         except:
             return "FAIL"
