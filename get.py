@@ -66,7 +66,7 @@ if __name__ == "__main__":
                 print x
                 if count == 0:
                     id = x
-                if count == 1:
+                else:
                     ACCESS = x
                     print ACCESS
                 count += 1
