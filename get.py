@@ -103,7 +103,7 @@ if __name__ == "__main__":
     i = 0
     f = open('/root/web/posrecord.txt', 'w+')
     f.close()
-    f = open('/root/web/emergency.txt', 'w+')
+    f = open('/root/web/emergencyrecord.txt', 'w+')
     f.close()
 
     app = web.application(urls, globals())
