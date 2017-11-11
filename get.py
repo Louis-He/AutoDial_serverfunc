@@ -65,6 +65,7 @@ if __name__ == "__main__":
             j = i.split('\n')[0]
             k = j.split(',')
             for x in k:
+                print x
                 if count == 0:
                     id = x
                 if count == 1:
