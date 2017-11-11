@@ -80,8 +80,12 @@ class search:
                 for i in lines:
                     lista.append(i)
 
-                for i in range (1,11):
-                    final.append(lista[len(lista)-i])
+                if len(lista)>10:
+                    for i in range (1,11):
+                        final.append(lista[len(lista)-i])
+                else:
+                    for i in range (1,len(lista)):
+                        final.append(lista[len(lista)-i])
 
                 for i in range (0,len(final)-1):
                     result += final[i] + '\n'
