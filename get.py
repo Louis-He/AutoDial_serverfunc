@@ -10,68 +10,54 @@ urls = (
 
 class index:
     def GET(self, name):
-        try:
-            print web.input()
-            i = web.input()
-            ID = i.ID
-            lon = i.lon
-            lat = i.lat
-            status = i.status
-            print ID, lon, lat, status
 
-            f = open('/root/web/posrecord.txt', 'a+')
-            f.write('[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(lon) + '\t' + str(lat) + '\t' + str(status) + '\tPOSITION SAVED\n')
+        print web.input()
+        i = web.input()
+        ID = i.ID
+        lon = i.lon
+        lat = i.lat
+        status = i.status
+        print ID, lon, lat, status
+
+        f = open('/root/web/posrecord.txt', 'a+')
+        f.write('[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(lon) + '\t' + str(lat) + '\t' + str(status) + '\tPOSITION SAVED\n')
+        f.close()
+
+        if status == 'emergency':
+            f = open('/root/web/emergencyrecord.txt', 'a+')
+            f.write(
+                '[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(
+                    lon) + '\t' + str(lat) + '\t' + str(status) + '\n')
             f.close()
 
-            if status == 'emergency':
-                f = open('/root/web/emergencyrecord.txt', 'a+')
-                f.write(
-                    '[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(
-                        lon) + '\t' + str(lat) + '\t' + str(status) + '\n')
-                f.close()
-
-            try:
-                f = open('/root/web/track/' + ID + '.txt', 'a+')
-                f.close()
-                print 'try file'
-
-                if status == 'regular':
-                    status = 1
-                elif status == 'emergency':
-                    status = 911
-                else:
-                    status = 0
-
-                f = open('/root/web/track/' + ID + '.txt', 'a+')
-                f.write(ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%Y%m%d%H%M%S', time.localtime(
-                        time.time())) + ',' + status + '\n')
-                f.close()
-                print 'Modify position file'
-            except:
-                f = open('/root/web/track/' + ID + '.txt', 'w+')
-                f.write('User,Longitude,Latitude,time,status\n')
-                f.close()
-                print 'Create file'
-
-                if status == 'regular':
-                    status = 1
-                elif status == 'emergency':
-                    status = 911
-                else:
-                    status = 0
-
-                f = open('/root/web/track/' + ID + '.txt', 'a+')
-                f.write(
-                    ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%Y%m%d%H%M%S', time.localtime(
-                        time.time())) + ',' + status + '\n')
-                f.close()
-                print 'Modify position file'
-
-        
-            return "SUCCEED"
-
+        try:
+            f = open('/root/web/track/' + ID + '.txt', 'a+')
+            f.close()
+            print 'try file'
         except:
-            return "FAIL"
+            f = open('/root/web/track/' + ID + '.txt', 'w+')
+            f.write('User,Longitude,Latitude,time,status\n')
+            f.close()
+            print 'Create file'
+
+        if status == 'regular':
+            status = 1
+        elif status == 'emergency':
+            status = 911
+        else:
+            status = 0
+
+        f = open('/root/web/track/' + ID + '.txt', 'a+')
+        f.write(
+            ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%Y%m%d%H%M%S', time.localtime(
+                time.time())) + ',' + str(status) + '\n')
+        f.close()
+        print 'Modify position file'
+
+
+        return "SUCCEED"
+
+
 
 class search:
 
