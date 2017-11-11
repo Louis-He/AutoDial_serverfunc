@@ -35,7 +35,7 @@ class search:
         ID = i.ID
         pw = i.pw
         print ID, pw
-        print id, PW
+        print id
 
         if ID == id and pw == PW:
             return "IN SEARCH MODE"
@@ -47,7 +47,7 @@ class search:
 if __name__ == "__main__":
     global i
     global id
-
+    global PW
     i = 0
     f = open('/root/web/posrecord.txt', 'w+')
     f.close()
@@ -55,7 +55,6 @@ if __name__ == "__main__":
     f.close()
 
     try:
-        global PW
         f = open('/root/web/ID.txt', 'r')
         lines = f.readlines()
         f.close()
