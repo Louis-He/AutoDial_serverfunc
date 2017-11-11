@@ -27,23 +27,21 @@ class index:
 
 class search:
     def GET(self, name):
-        try:
-            global i
-            global id
-            global password
-            print web.input()
-            i = web.input()
-            ID = i.ID
-            pw = i.pw
-            print ID, pw
-            print id, password
+        global i
+        global id
+        global password
+        print web.input()
+        i = web.input()
+        ID = i.ID
+        pw = i.pw
+        print ID, pw
+        print id, password
 
-            if ID == id and pw == password:
-                return "IN SEARCH MODE"
-            else:
-                return "Error: Acceess Denied"
-        except:
-            return "FAIL"
+        if ID == id and pw == password:
+            return "IN SEARCH MODE"
+        else:
+            return "Error: Acceess Denied"
+
 
 
 if __name__ == "__main__":
