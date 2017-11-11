@@ -84,7 +84,7 @@ class search:
                     for i in range (1,11):
                         final.append(lista[len(lista)-i])
                 else:
-                    for i in range (1,len(lista)):
+                    for i in range (1,len(lista)+1):
                         final.append(lista[len(lista)-i])
 
                 for i in range (0,len(final)-1):
