@@ -69,6 +69,8 @@ class search:
         print 'id2' + id2
         print 'acc' + acc
         if ID == id2 and pw == acc:
+            list = []
+            final = []
             result = 'time(UTC)\tuser\tlon\tlat\n'
             try:
                 f = open('/root/web/emergencyrecord.txt', 'r')
@@ -77,7 +79,13 @@ class search:
 
                 count = 0
                 for i in lines:
-                    result = result + i
+                    list.append(i)
+
+                for i in range (1,11):
+                    final.append(list[len(list-i)])
+
+                for i in range (0,len(final)-1):
+                    result += final[i] + '\n'
             except:
                 print
                 'ERR: file DO NOT EXIST.'
