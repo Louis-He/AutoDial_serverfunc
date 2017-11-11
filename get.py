@@ -15,15 +15,22 @@ class index:
             ID = i.ID
             lon = i.lon
             lat = i.lat
-            print ID, lon, lat
+            status = i.status
+            print ID, lon, lat, status
 
             f = open('/root/web/posrecord.txt', 'a+')
-            f.write('[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(lon) + '\t' + str(lat) + '\tPOSITION SAVED\n')
+            f.write('[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(lon) + '\t' + str(lat) + '\t' + str(status) + '\tPOSITION SAVED\n')
             f.close()
+
+            if status == 'emergency':
+                f = open('/root/web/emergencyrecord.txt', 'a+')
+                f.write(
+                    '[' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ']\t' + str(ID) + '\t' + str(
+                        lon) + '\t' + str(lat) + '\t' + str(status) + '\n')
+                f.close()
             return "SUCCEED"
         except:
             return "FAIL"
-
 
 class search:
 
@@ -62,7 +69,19 @@ class search:
         print 'id2' + id2
         print 'acc' + acc
         if ID == id2 and pw == acc:
-            return "IN SEARCH MODE"
+            result = 'time(UTC)\tuser\tlon\tlat\n'
+            try:
+                f = open('/root/web/emergencyrecord.txt', 'r')
+                lines = f.readlines()
+                f.close()
+
+                count = 0
+                for i in lines:
+                    result = result + i
+            except:
+                print
+                'ERR: file DO NOT EXIST.'
+            return "EMERGENCY LISTS\n"+result
         else:
             return "Error: Acceess Denied"
 
@@ -76,7 +95,7 @@ if __name__ == "__main__":
     i = 0
     f = open('/root/web/posrecord.txt', 'w+')
     f.close()
-    f = open('/root/web/posrecord2.txt', 'w+')
+    f = open('/root/web/emergency.txt', 'w+')
     f.close()
 
     app = web.application(urls, globals())
