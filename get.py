@@ -36,7 +36,7 @@ class search:
         ID = i.ID
         pw = i.pw
         print ID, pw
-        print ACCESS
+        print acc
         if ID == id2 and pw == acc:
             return "IN SEARCH MODE"
         else:
