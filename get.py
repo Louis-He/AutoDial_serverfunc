@@ -5,12 +5,11 @@ urls = (
     '/index/(.*)', 'index',
     '/search/(.*)', 'search'
 )
-global id2
-global acc
+
+
 class index:
     def GET(self, name):
         try:
-            global i
             print web.input()
             i = web.input()
             ID = i.ID
@@ -27,13 +26,34 @@ class index:
 
 
 class search:
-    global id2
-    global acc
+
+    def getIDlist(self):
+        global id2
+        global acc
+        try:
+            f = open('/root/web/ID.txt', 'r')
+            lines = f.readlines()
+            f.close()
+
+            count = 0
+            for i in lines:
+                j = i.split('\n')[0]
+                k = j.split(',')
+                for x in k:
+                    print x
+                    if count == 0:
+                        id2 = x
+                    else:
+                        acc = x
+                    count += 1
+        except:
+            print 'ERR: file DO NOT EXIST.'
 
     def GET(self, name):
         global id2
         global acc
-        
+        self.getIDlist();
+
         print web.input()
         i = web.input()
         ID = i.ID
@@ -49,9 +69,7 @@ class search:
 
 
 if __name__ == "__main__":
-    global i
-    global id2
-    global acc
+
     id2 = ''
     acc = ''
 
@@ -60,30 +78,6 @@ if __name__ == "__main__":
     f.close()
     f = open('/root/web/posrecord2.txt', 'w+')
     f.close()
-
-    try:
-        f = open('/root/web/ID.txt', 'r')
-        lines = f.readlines()
-        f.close()
-
-        count = 0
-        for i in lines:
-            j = i.split('\n')[0]
-            k = j.split(',')
-            for x in k:
-                print x
-                if count == 0:
-                    id2 = x
-                else:
-                    acc = x
-                    print 'acc:'+acc
-                count += 1
-
-    except:
-        print 'ERR: file DO NOT EXIST.'
-
-    print 'acc:'+acc
-
 
     app = web.application(urls, globals())
     app.run()
