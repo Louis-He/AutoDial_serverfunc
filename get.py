@@ -35,7 +35,7 @@ class index:
                 f.close()
             except:
                 f = open('/root/web/track/' + ID + '.txt', 'w+')
-                f.write('User,Longitude,Latitude,time,status')
+                f.write('User,Longitude,Latitude,time,status\n')
                 f.close()
 
             if status == 'regular':
@@ -46,7 +46,7 @@ class index:
                 status = 0
             f = open('/root/web/track/' + ID + '.txt', 'a+')
             f.write(
-                ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + ',' + status)
+                ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + ',' + status + '\n')
             f.close()
 
             return "SUCCEED"
