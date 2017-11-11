@@ -69,7 +69,7 @@ class search:
         print 'id2' + id2
         print 'acc' + acc
         if ID == id2 and pw == acc:
-            list = []
+            lista = []
             final = []
             result = 'time(UTC)\tuser\tlon\tlat\n'
             try:
@@ -77,19 +77,17 @@ class search:
                 lines = f.readlines()
                 f.close()
 
-                count = 0
                 for i in lines:
-                    list.append(i)
+                    lista.append(i)
 
                 for i in range (1,11):
-                    final.append(list[len(list)-i])
+                    final.append(lista[len(lista)-i])
 
                 for i in range (0,len(final)-1):
                     result += final[i] + '\n'
             except:
-                print
-                'ERR: file DO NOT EXIST.'
-            return "EMERGENCY LISTS\n"+result
+                print 'ERR: file DO NOT EXIST.'
+            return "EMERGENCY LISTS\n" + result
         else:
             return "Error: Acceess Denied"
 
