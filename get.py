@@ -7,7 +7,7 @@ urls = (
 )
 
 class index:
-    def GET(self):
+    def GET(self, name):
         global i
         print web.input()
         i = web.input()
@@ -23,8 +23,7 @@ class index:
 
 
 class search:
-
-    def GET(self):
+    def GET(self, name):
         global i
         global id
         global password
