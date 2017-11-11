@@ -28,15 +28,16 @@ class index:
 class search:
     def GET(self, name):
         global i
-        global id
+        global id2
         global ACCESS
+
         print web.input()
         i = web.input()
         ID = i.ID
         pw = i.pw
         print ID, pw
         print ACCESS
-        if ID == id and pw == ACCESS:
+        if ID == id2 and pw == ACCESS:
             return "IN SEARCH MODE"
         else:
             return "Error: Acceess Denied"
@@ -45,7 +46,7 @@ class search:
 
 if __name__ == "__main__":
     global i
-    global id
+    global id2
     global ACCESS
     i = 0
     f = open('/root/web/posrecord.txt', 'w+')
@@ -65,7 +66,7 @@ if __name__ == "__main__":
             for x in k:
                 print x
                 if count == 0:
-                    id = x
+                    id2 = x
                 else:
                     ACCESS = x
                     print ACCESS
