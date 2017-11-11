@@ -87,7 +87,7 @@ class search:
                     for i in range (1,len(lista)+1):
                         final.append(lista[len(lista)-i])
 
-                for i in range (0,len(final)-1):
+                for i in range (0,len(final)):
                     result += final[i] + '\n'
             except:
                 print 'ERR: file DO NOT EXIST.'
