@@ -33,10 +33,12 @@ class index:
             try:
                 f = open('/root/web/track/' + ID + '.txt', 'a+')
                 f.close()
+                print 'try file'
             except:
                 f = open('/root/web/track/' + ID + '.txt', 'w+')
                 f.write('User,Longitude,Latitude,time,status\n')
                 f.close()
+                print 'Create file'
 
             if status == 'regular':
                 status = 1
@@ -44,10 +46,12 @@ class index:
                 status = 911
             else:
                 status = 0
+
             f = open('/root/web/track/' + ID + '.txt', 'a+')
             f.write(
                 ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) + ',' + status + '\n')
             f.close()
+            print 'Modify position file'
 
             return "SUCCEED"
         except:
