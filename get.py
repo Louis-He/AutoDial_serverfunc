@@ -29,15 +29,15 @@ class search:
     def GET(self, name):
         global i
         global id
-        global Password
+        global PW
         print web.input()
         i = web.input()
         ID = i.ID
         pw = i.pw
         print ID, pw
-        print id, Password
+        print id, PW
 
-        if ID == id and pw == Password:
+        if ID == id and pw == PW:
             return "IN SEARCH MODE"
         else:
             return "Error: Acceess Denied"
@@ -47,7 +47,7 @@ class search:
 if __name__ == "__main__":
     global i
     global id
-    global Password
+
     i = 0
     f = open('/root/web/posrecord.txt', 'w+')
     f.close()
@@ -55,6 +55,7 @@ if __name__ == "__main__":
     f.close()
 
     try:
+        global PW
         f = open('/root/web/ID.txt', 'r')
         lines = f.readlines()
         f.close()
@@ -68,10 +69,10 @@ if __name__ == "__main__":
                 if count == 0:
                     id = x
                 if count == 1:
-                    Password = x
+                    PW = x
                 count += 1
 
-        print id, Password
+        print id, PW
     except:
         print
         'ERR: file DO NOT EXIST.'
