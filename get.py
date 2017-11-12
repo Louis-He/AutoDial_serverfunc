@@ -49,7 +49,7 @@ class index:
 
         f = open('/root/web/track/' + ID + '.txt', 'a+')
         f.write(
-            ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%Y%m%d%H%M%S', time.localtime(
+            ID + ',' + str(lon) + ',' + str(lat) + ',' + time.strftime('%m%d%H%M', time.localtime(
                 time.time())) + ',' + str(status) + '\n')
         f.close()
         print 'Modify position file'
